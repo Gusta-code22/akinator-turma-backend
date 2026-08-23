@@ -1,0 +1,14 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: akinator-postgres
+    environment:
+      POSTGRES_DB: akinator
+      POSTGRES_USER: akinator
+      POSTGRES_PASSWORD: akinator
+    ports:
+      - "5432:5432"
+    volumes:
+      - akinator-data:/var/lib/postgresql/data
+volumes:
+  akinator-data:
