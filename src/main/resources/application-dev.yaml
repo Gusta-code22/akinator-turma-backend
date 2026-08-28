@@ -1,12 +1,20 @@
 spring:
   application:
     name: akinator-turma-backend
+
   datasource:
     url: jdbc:postgresql://localhost:5432/akinator
     username: akinator
     password: akinator
     driver-class-name: org.postgresql.Driver
+
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
+    defer-datasource-initialization: true
+
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:data-dev.sql
