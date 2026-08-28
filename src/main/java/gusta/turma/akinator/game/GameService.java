@@ -1,6 +1,7 @@
 package gusta.turma.akinator.game;
 
 
+
 import gusta.turma.akinator.pergunta.AnswerRequest;
 import gusta.turma.akinator.pergunta.Pergunta;
 import gusta.turma.akinator.pergunta.PerguntaRepository;
@@ -48,10 +49,14 @@ public class GameService {
 
         if (primeiraPergunta.isEmpty()) {
             game.setFinalizado(true);
-            return GameResponse.gaveUp(game.getPublicId());
+            return GameResponse.gaveUp(game.getPublicId(), game.getCandidatos().size());
         }
 
-        return GameResponse.nextQuestion(game.getPublicId(), toQuestionDTO(primeiraPergunta.get()));
+        return GameResponse.nextQuestion(
+                game.getPublicId(),
+                toQuestionDTO(primeiraPergunta.get()),
+                game.getCandidatos().size()
+        );
     }
 
     @Transactional
@@ -72,17 +77,21 @@ public class GameService {
 
         if (game.getCandidatos().isEmpty()) {
             game.setFinalizado(true);
-            return GameResponse.gaveUp(game.getPublicId());
+            return GameResponse.gaveUp(game.getPublicId(), 0);
         }
 
         Optional<Pergunta> proximaPergunta = engine.chooseNextQuestion(game);
 
         if (proximaPergunta.isEmpty()) {
             game.setFinalizado(true);
-            return GameResponse.gaveUp(game.getPublicId());
+            return GameResponse.gaveUp(game.getPublicId(), game.getCandidatos().size());
         }
 
-        return GameResponse.nextQuestion(game.getPublicId(), toQuestionDTO(proximaPergunta.get()));
+        return GameResponse.nextQuestion(
+                game.getPublicId(),
+                toQuestionDTO(proximaPergunta.get()),
+                game.getCandidatos().size()
+        );
     }
 
     private QuestionDTO toQuestionDTO(Pergunta pergunta) {

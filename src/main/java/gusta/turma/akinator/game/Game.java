@@ -35,8 +35,12 @@ public class Game {
     private Boolean finalizado = false;
 
     @Column(nullable = false, updatable = false)
-    @CreatedDate
     private LocalDateTime criadoEm;
+
+    @PrePersist
+    protected void aoCriar() {
+        this.criadoEm = LocalDateTime.now();
+    }
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(

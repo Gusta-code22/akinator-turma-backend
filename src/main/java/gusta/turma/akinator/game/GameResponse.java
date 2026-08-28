@@ -6,21 +6,22 @@ import gusta.turma.akinator.pessoa.PersonDTO;
 import java.util.UUID;
 
 public record GameResponse(
-    UUID gameId,
-    Boolean finished,
-    QuestionDTO question,
-    PersonDTO person
+        UUID gameId,
+        Boolean finished,
+        QuestionDTO question,
+        PersonDTO person,
+        Integer candidatesRemaining
 ) {
 
-    public static GameResponse nextQuestion(UUID gameId, QuestionDTO question) {
-        return new GameResponse(gameId, false, question, null);
+    public static GameResponse nextQuestion(UUID gameId, QuestionDTO question, int candidatesRemaining) {
+        return new GameResponse(gameId, false, question, null, candidatesRemaining);
     }
 
     public static GameResponse discovered(UUID gameId, PersonDTO person) {
-        return new GameResponse(gameId, true, null, person);
+        return new GameResponse(gameId, true, null, person, 1);
     }
 
-    public static GameResponse gaveUp(UUID gameId) {
-        return new GameResponse(gameId, true, null, null);
+    public static GameResponse gaveUp(UUID gameId, int candidatesRemaining) {
+        return new GameResponse(gameId, true, null, null, candidatesRemaining);
     }
 }
