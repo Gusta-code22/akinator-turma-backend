@@ -5,7 +5,8 @@ INSERT INTO pessoa (nome, foto) VALUES
                                     ('Gustavo', '/images/gustavo.jpg'),
                                     ('João', '/images/joao.jpg'),
                                     ('Maria', '/images/maria.jpg'),
-                                    ('Ana', '/images/ana.jpg');
+                                    ('Ana', '/images/ana.jpg'),
+                                    ('Pedro', '/images/pedro.jpg');
 
 INSERT INTO pergunta (texto) VALUES
                                  ('É homem?'),
@@ -14,7 +15,8 @@ INSERT INTO pergunta (texto) VALUES
                                  ('Joga futebol?');
 
 INSERT INTO pessoa_resposta (pessoa_id, pergunta_id, resposta) VALUES
-   (1, 1, true), (1, 2, false), (1, 3, true), (1, 4, false),
-   (2, 1, true), (2, 2, true), (2, 3, false), (2, 4, true),
-   (3, 1, false), (3, 2, true), (3, 3, true), (3, 4, false),
-   (4, 1, false), (4, 2, false), (4, 3, false), (4, 4, true);
+                                                                   (1, 1, true), (1, 2, false), (1, 3, true), (1, 4, false),
+                                                                   (2, 1, true), (2, 2, true), (2, 3, false), (2, 4, true),
+                                                                   (3, 1, false), (3, 2, true), (3, 3, true), (3, 4, false),
+                                                                   (4, 1, false), (4, 2, false), (4, 3, false), (4, 4, true),
+                                                                   (5, 1, true), (5, 2, false), (5, 3, true), (5, 4, false);
